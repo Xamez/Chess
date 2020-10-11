@@ -15,7 +15,6 @@ Chess game made with python and pygame
   - [x] Queen
   - [x] King
     - [x] Castling 
-  - [ ] Check
   - [ ] Pinning
 - [ ] Pawn promotion
 - [ ] Check
