@@ -53,11 +53,11 @@ class Gui:
                                 if self.__stateBoard[x][y] != "_":
                                     if self.__stateBoard[x][y].getColor() != self.__board.getPiece(self.__selected).getColor():
                                         move = self.__board.movePiece(self.__board.getPiece(self.__selected), (x, y))
-                                    if move:
-                                        self.__lastMove = move
-                                        self.__selected = ()
-                                    else:
-                                        self.__selected = (x, y)
+                                        if move:
+                                            self.__lastMove = move
+                                            self.__selected = ()
+                                        else:
+                                            self.__selected = (x, y)
                                 else:
                                     move = self.__board.movePiece(self.__board.getPiece(self.__selected), (x, y))
                                     if move:
