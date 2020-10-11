@@ -22,7 +22,6 @@ class Gui:
         self.__lastMove = ()
 
         # pygame
-
         pygame.init()
         pygame.font.init()
         self.__font = pygame.font.SysFont('consolas', 30)
