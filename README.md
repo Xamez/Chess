@@ -20,4 +20,4 @@ Chess game made with python and pygame
 - [ ] Check
 - [ ] Win
 - [ ] Stalemate
-- [ ] Player turn
+- [x] Turn-based
