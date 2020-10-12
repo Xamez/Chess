@@ -8,14 +8,15 @@ Chess game made with python and pygame
 - [x] Capturing
 - [ ] Moving the pieces
   - [x] Pawn
-    - [ ] "En passant"
   - [x] Rook
   - [x] Bishop
   - [x] Knight
   - [x] Queen
   - [x] King
+  - [ ] Special moves
     - [x] Castling 
-  - [ ] Pinning
+    - [ ] "En passant"
+    - [ ] Pinning
 - [ ] Pawn promotion
 - [ ] Check
 - [ ] Win
