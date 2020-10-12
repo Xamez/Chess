@@ -1,6 +1,7 @@
 import os
 import sys
 from math import ceil
+import random
 import pygame
 from Utils import Utils
 
@@ -10,6 +11,7 @@ class Gui:
 
         self.__running = True
         self.__game = game
+        self.__player = 0
         self.__board = self.__game.getBoard()
         self.__stateBoard = self.__board.getStateBoard()
         self.__width = width
@@ -55,16 +57,22 @@ class Gui:
                                         if move:
                                             self.__lastMove = move
                                             self.__selected = ()
+                                            self.__player = (self.__player + 1) % 2
                                         else:
+                                            self.__selected = (x, y)
+                                    else:
+                                        if self.__stateBoard[x][y].getColor() == Utils.getPlayerColor(self.__player):
                                             self.__selected = (x, y)
                                 else:
                                     move = self.__board.movePiece(self.__board.getPiece(self.__selected), (x, y))
                                     if move:
                                         self.__lastMove = move
                                         self.__selected = ()
+                                        self.__player = (self.__player + 1) % 2
                             else:
                                 if self.__stateBoard[x][y] != "_":
-                                    self.__selected = (x, y)
+                                    if self.__stateBoard[x][y].getColor() == Utils.getPlayerColor(self.__player):
+                                        self.__selected = (x, y)
                         else:
                             self.__selected = ()
             

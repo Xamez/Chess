@@ -39,5 +39,10 @@ class Utils:
                 "P": 1
                }
 
-    #@staticmethod
-    #def get
+    @staticmethod
+    def getPlayerColor(color):
+        colors = {
+                 0: "W",
+                 1: "B"
+               }
+        return colors[color]
