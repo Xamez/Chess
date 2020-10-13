@@ -17,6 +17,10 @@ Chess game made with python and pygame
     - [x] Castling 
     - [ ] "En passant"
     - [ ] Pinning
+- [ ] Highlights
+  - [x] Last move
+  - [x] Selected
+  - [ ] Check
 - [ ] Pawn promotion
 - [ ] Check
 - [ ] Win
