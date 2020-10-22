@@ -142,8 +142,7 @@ class Board:
                 if not self.getPiece((x-u, y)).getColor() == piece.getColor():
                     possibilities.append((x-u, y))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x-u, y))
         for d in range(1, down+1):
@@ -151,8 +150,7 @@ class Board:
                 if not self.getPiece((x+d, y)).getColor() == piece.getColor():
                     possibilities.append((x+d, y))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x+d, y))
         for l in range(1, left+1):
@@ -160,8 +158,7 @@ class Board:
                 if not self.getPiece((x, y-l)).getColor() == piece.getColor():
                     possibilities.append((x, y-l))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x, y-l))
         for r in range(1, right+1):
@@ -169,8 +166,7 @@ class Board:
                 if not self.getPiece((x, y+r)).getColor() == piece.getColor():
                     possibilities.append((x, y+r))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x, y+r))
 
@@ -187,8 +183,7 @@ class Board:
                 if not self.getPiece((x-ul, y-ul)).getColor() == piece.getColor():
                     possibilities.append((x-ul, y-ul))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x-ul, y-ul))
         for dr in range(1, right+1): # down left
@@ -196,8 +191,7 @@ class Board:
                 if not self.getPiece((x-dr, y+dr)).getColor() == piece.getColor():
                     possibilities.append((x-dr, y+dr))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x-dr, y+dr))
         for ul in range(1, left+1): # up right
@@ -205,8 +199,7 @@ class Board:
                 if not self.getPiece((x+ul, y-ul)).getColor() == piece.getColor():
                     possibilities.append((x+ul, y-ul))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x+ul, y-ul))
         for dr in range(1, down+1): # down right
@@ -214,24 +207,32 @@ class Board:
                 if not self.getPiece((x+dr, y+dr)).getColor() == piece.getColor():
                     possibilities.append((x+dr, y+dr))
                     break
-                else:
-                    break
+                break
             else:
                 possibilities.append((x+dr, y+dr))
 
         return possibilities
 
     def movePiece(self, piece, position):
+        signe = 1 if piece.getColor() == "W" else -1
         old_x, old_y = piece.getPosition()
         x, y = position
         if self.canMove(position, self.getMoves(piece)):
             if self.getPiece(position):
                 self.removePiece(position)
+            else:
+                # EN PASSANT CASE
+                if piece.getType() == "P":
+                    if not old_y == y:
+                        print(Utils.PositionToString((x+(-1*signe), y)))
+                        self.removePiece((x+(+1*signe), y))
             self.__stateBoard[x][y] = piece
             self.removePiece(piece.getPosition())
             self.__stateBoard[x][y].setPosition(position)
 
-            # ROCK CASE
+            
+            
+            # CASTLING CASE
             if piece.getType() == "K":
                 if len(piece.getHistory()) == 1: # 1 because we've just moved it just above
                     old_y = y
