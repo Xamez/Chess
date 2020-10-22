@@ -26,7 +26,7 @@ class Gui:
         # pygame
         pygame.init()
         pygame.font.init()
-        self.__font = pygame.font.SysFont('consolas', 30)
+        self.__font = pygame.font.SysFont('C:\Windows\Fonts\consolas.ttf', 30)
         self.__screen = pygame.display.set_mode((self.__width, self.__height))
         pygame.display.set_caption("Chess Game")
 
@@ -69,6 +69,7 @@ class Gui:
                                         self.__lastMove = move
                                         self.__selected = ()
                                         self.__player = (self.__player + 1) % 2
+                                        
                             else:
                                 if self.__stateBoard[x][y] != "_":
                                     if self.__stateBoard[x][y].getColor() == Utils.getPlayerColor(self.__player):

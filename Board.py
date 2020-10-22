@@ -53,6 +53,7 @@ class Board:
         signe = 1 if piece.getColor() == "W" else -1
 
         if piece.getType() == "P":
+
             if self.getPiece((x+(-1*signe), y-1)):
                 if not self.getPiece((x+(-1*signe), y-1)).getColor() == piece.getColor():
                     possibilities.append((x+(-1*signe), y-1))
@@ -63,6 +64,18 @@ class Board:
                 possibilities.append((x+(-1*signe), y))
                 if len(piece.getHistory()) == 0:
                     possibilities.append((x+(-2*signe), y))
+
+            pieces = []
+            if self.getPiece((x, y-1)):
+                pieces.append(self.getPiece((x, y-1)))
+            if self.getPiece((x, y+1)):
+                pieces.append(self.getPiece((x, y+1)))
+            for p in pieces:
+                if len(p.getHistory()) > 0:
+                    x, y = p.getPosition()
+                    if p.getHistory()[-1] == f"{Utils.getFullColorName(p.getColor())} Pawn: {Utils.PositionToString((x+(-2*signe), y))} -> {Utils.PositionToString(p.getPosition())}":
+                        if not p.getColor() == piece.getColor():
+                            possibilities.append((x+(-1*signe), y))
 
         if piece.getType() == "R":
             possibilities = self.canMoveHV(x, y, piece)
@@ -242,4 +255,4 @@ class Board:
                     piece.addHistory(history)
                     return (x, old_y, x, y2)
             return (old_x, old_y, x, y)
-        return []
+        return ()
